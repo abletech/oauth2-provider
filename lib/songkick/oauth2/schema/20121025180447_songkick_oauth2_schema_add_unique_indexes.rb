@@ -1,17 +1,9 @@
-class SongkickOauth2SchemaAddUniqueIndexes < ActiveRecord::Migration[4.2]
-  FIELDS = [:code, :refresh_token_hash]
-
+class SongkickOauth2SchemaAddUniqueIndexes < ActiveRecord::Migration[6.1]
   def self.up
-    FIELDS.each do |field|
-      if field == :refresh_token_hash
-        # This field needs a custom index name to keep the name <= 62 characters
-        remove_index :oauth2_authorizations, :name => "index_oauth2_authorizations_client_id_#{field}"
-        add_index :oauth2_authorizations, [:client_id, field], :unique => true, :name => "index_oauth2_authorizations_client_id_#{field}_u"
-      else
-        remove_index :oauth2_authorizations, [:client_id, field]
-        add_index :oauth2_authorizations, [:client_id, field], :unique => true
-      end
-    end
+    remove_index :oauth2_authorizations, column: [:client_id, :code]
+    remove_index :oauth2_authorizations, column: [:client_id, :refresh_token_hash], name: 'index_client_refresh'
+    add_index :oauth2_authorizations, [:client_id, :code], :unique => true
+    add_index :oauth2_authorizations, [:client_id, :refresh_token_hash], name: 'index_client_refresh', :unique => true
     remove_index :oauth2_authorizations, [:access_token_hash]
     add_index :oauth2_authorizations, [:access_token_hash], :unique => true
 
@@ -35,3 +27,4 @@ class SongkickOauth2SchemaAddUniqueIndexes < ActiveRecord::Migration[4.2]
     remove_index :oauth2_clients, [:name]
   end
 end
+

@@ -1,4 +1,4 @@
-class SongkickOauth2SchemaOriginalSchema < ActiveRecord::Migration[4.2]
+class SongkickOauth2SchemaOriginalSchema < ActiveRecord::Migration[6.1]
   def self.up
     create_table :oauth2_clients do |t|
       t.timestamps
@@ -25,7 +25,7 @@ class SongkickOauth2SchemaOriginalSchema < ActiveRecord::Migration[4.2]
     add_index :oauth2_authorizations, [:client_id, :code]
     add_index :oauth2_authorizations, [:access_token_hash]
     add_index :oauth2_authorizations, [:client_id, :access_token_hash]
-    add_index :oauth2_authorizations, [:client_id, :refresh_token_hash], :name => 'index_oauth2_authorizations_client_id_refresh_token_hash' # Name must be <= 62 chars
+    add_index :oauth2_authorizations, [:client_id, :refresh_token_hash], name: 'index_client_refresh'
   end
 
   def self.down
@@ -33,3 +33,4 @@ class SongkickOauth2SchemaOriginalSchema < ActiveRecord::Migration[4.2]
     drop_table :oauth2_authorizations
   end
 end
+

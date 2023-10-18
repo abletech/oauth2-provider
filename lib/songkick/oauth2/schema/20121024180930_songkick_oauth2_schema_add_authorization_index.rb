@@ -1,4 +1,4 @@
-class SongkickOauth2SchemaAddAuthorizationIndex < ActiveRecord::Migration[4.2]
+class SongkickOauth2SchemaAddAuthorizationIndex < ActiveRecord::Migration[6.1]
   INDEX_NAME = 'index_owner_client_pairs'
 
   def self.up
@@ -11,3 +11,4 @@ class SongkickOauth2SchemaAddAuthorizationIndex < ActiveRecord::Migration[4.2]
     add_index :oauth2_authorizations, [:client_id, :access_token_hash]
   end
 end
+
