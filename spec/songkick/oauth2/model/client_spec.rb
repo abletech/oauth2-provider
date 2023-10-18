@@ -32,18 +32,6 @@ describe Songkick::OAuth2::Model::Client do
     expect(@client).to_not be_valid
   end
 
-<<<<<<< HEAD
-  if (defined?(ActiveRecord::VERSION) && ActiveRecord::VERSION::MAJOR <= 3) || defined?(ProtectedAttributes)
-    it "cannot mass-assign client_id" do
-      @client.update_attributes(:client_id => 'foo')
-      @client.client_id.should_not == 'foo'
-    end
-
-    it "cannot mass-assign client_secret" do
-      @client.update_attributes(:client_secret => 'foo')
-      @client.client_secret.should_not == 'foo'
-    end
-=======
   it "cannot mass-assign client_id" do
     @client.update!(:client_id => 'foo')
     expect(@client.client_id).to_not eq('foo')
@@ -52,7 +40,6 @@ describe Songkick::OAuth2::Model::Client do
   it "cannot mass-assign client_secret" do
     @client.update!(:client_secret => 'foo')
     expect(@client.client_secret).to_not eq('foo')
->>>>>>> songkick/master
   end
 
   it "has client_id and client_secret filled in" do
