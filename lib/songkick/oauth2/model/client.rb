@@ -1,5 +1,3 @@
-require 'protected_attributes'
-
 module Songkick
   module OAuth2
     module Model
