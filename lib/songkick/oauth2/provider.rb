@@ -18,7 +18,7 @@ module Songkick
 
     autoload :Model,  ROOT + '/oauth2/model'
     autoload :Router, ROOT + '/oauth2/router'
-    # autoload :Schema, ROOT + '/oauth2/schema'
+    autoload :Schema, ROOT + '/oauth2/schema'
 
     def self.random_string
       if defined? SecureRandom
@@ -145,3 +145,4 @@ module Songkick
 
   end
 end
+
