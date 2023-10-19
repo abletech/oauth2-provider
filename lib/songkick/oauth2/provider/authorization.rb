@@ -172,7 +172,9 @@ module Songkick
             @error_description = "Unknown client ID #{@params[CLIENT_ID]}"
           end
 
+
           if @client and @client.redirect_uri and !@client.redirect_uri.split(';').include?(@params[REDIRECT_URI])
+            puts "client redirect_uri:<#{@client.redirect_uri.inspect}> redirect_uri:#{@params[REDIRECT_URI].inspect}"
             @error = REDIRECT_MISMATCH
             @error_description = "Parameter #{REDIRECT_URI} does not match registered URI"
           end
@@ -190,4 +192,3 @@ module Songkick
     end
   end
 end
-
