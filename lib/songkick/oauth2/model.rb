@@ -10,7 +10,7 @@ module Songkick
       autoload :Authorization, ROOT + '/oauth2/model/authorization'
       autoload :Client,        ROOT + '/oauth2/model/client'
 
-      # Schema = Songkick::OAuth2::Schema
+      Schema = Songkick::OAuth2::Schema
 
       DUPLICATE_RECORD_ERRORS = [
         /^Mysql::Error:\s+Duplicate\s+entry\b/,
@@ -38,3 +38,4 @@ module Songkick
     end
   end
 end
+
